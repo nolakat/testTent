@@ -1,10 +1,8 @@
-import React, { useState, useRef, useMemo, useEffect, Suspense} from 'react';
+import React, { useRef} from 'react';
 import * as THREE from 'three'
-import * as meshline from 'threejs-meshline'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import { extend, useLoader, useFrame, useThree } from 'react-three-fiber'
+import { useLoader } from 'react-three-fiber'
 
-extend(meshline)
 
 
 export default () =>{

@@ -7,6 +7,7 @@ import Cube from './Cube'
 import PixelCube from './PixelCube'
 import FadeCube from './FadeCube'
 import Tent from './Tent'
+import Plant from './Plant'
 import Effects from './Effects'
 
 import './index.scss'
@@ -61,11 +62,10 @@ function App() {
           >
             <ambientLight intensity={0.95} />
             <spotLight position={[15, 20, 5]} color={'red'} penumbra={.05} castShadow />
-            <fog attach="fog" args={["black", 10, 25]} />
             <Controls />
 
             <Suspense fallback={<Box />} >
-                <Tent />
+                <PixelCube />
             </Suspense>
             <Effects />
           </Canvas>

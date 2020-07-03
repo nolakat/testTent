@@ -26,8 +26,8 @@ export default function Effects(){
     return(
         <effectComposer ref={composer} args={[gl]}>
         <renderPass attachArray="passes" scene={scene} camera={camera} />
-        {/* <unrealBloomPass attachArray="passes" args={[aspect, 2, 1, 0]} /> */}
-        {/* <shaderPass attachArray="passes" args={[VolumetricLightShader]} needsSwap={false} /> */}
+        {/* <unrealBloomPass attachArray="passes" args={[aspect, 2, 1, 0]} />
+        <shaderPass attachArray="passes" args={[VolumetricLightShader]} needsSwap={false} /> */}
 
       </effectComposer>
     )
