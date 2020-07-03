@@ -8,41 +8,66 @@ import { useLoader } from 'react-three-fiber'
 export default () =>{
     const group = useRef();
 
-    const {nodes, materials} = useLoader(GLTFLoader, '/spacecube.gltf', loader=>{
-        
+    const {nodes} = useLoader(GLTFLoader, '/table04.gltf', loader=>{
     })
-
-
-
-
-    console.log('nodes', nodes);
-    console.log('materials', materials);
-
-    const geometry = nodes.Cube.geometry;
-    const texture = nodes.Cube.material;
-
-  
-    console.log('geo', geometry);
-    console.log('texture', texture);
    
+
+    const Table = [];
+
+    for (const [key, value] of Object.entries(nodes)) {
+        if( value.type === 'Mesh' && key !== 'Floor'){
+            Table.push(value)
+        }
+    }
+
+   
+    // Object.keys(Table).map((node) => {
+    //     console.log('node', Table[node].material)
+    // })
 
 
     return(
             <group
                 ref={group}
             >
+                 {
+                Object.keys(Table).map((node, i) =>{
+                    const obj = Table[node];
+
+                    return(
+                        <mesh 
+                            geometry={obj.geometry}
+                            position={obj.position}
+                            key={i}
+                        >
+                        <meshToonMaterial
+                            map={obj.material.map}
+                            transparent={false}
+                            fog={false}
+                            attach = "material"
+                            depthWrite={true}
+                            />
+                        </mesh>
+                    )
+                })
+            }
+
+    
+                
                 <mesh 
-                    geometry={nodes.Cube.geometry}
-                    position={[0, 0, 0]}
+                    geometry={nodes.Floor.geometry}
+                    position={nodes.Floor.position}
                 >
-                     <meshStandardMaterial
-                          map={texture.map}
-                          side={THREE.DoubleSide}
-                          transparent={true}
+                     <meshBasicMaterial
+                          color={'red'}
+                          transparent={false}
+                          fog={false}
                           attach = "material"
-                          depthWrite={false}
+                          depthWrite={true}
                           />
                 </mesh>
+                 
+                
             </group>
     )
 

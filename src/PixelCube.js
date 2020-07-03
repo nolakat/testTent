@@ -34,10 +34,11 @@ export default () =>{
             <group
                 ref={group}
             >
-                <mesh 
-                    geometry={nodes.Cube.geometry}
-                    position={[0, 0, 0]}
-                >
+
+<mesh
+      position={[0, 0, 0]}
+      >
+     <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
                     <meshToonMaterial
                     attach = "material"
                     color="#E4AEB4"
