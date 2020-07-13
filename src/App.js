@@ -8,6 +8,7 @@ import PixelCube from './PixelCube'
 import FadeCube from './FadeCube'
 import Tent from './Tent'
 import Plant from './Plant'
+import Table from './Table'
 import Effects from './Effects'
 
 import './index.scss'
@@ -46,7 +47,7 @@ function App() {
         maxPolarAngle={Math.PI / 3}
         minPolarAngle={Math.PI / 3}
         minDistance={4}
-        maxDistance={4}
+        // maxDistance={4}
         args={[camera, gl.domElement]}
         ref={orbitRef}
       />
@@ -61,6 +62,7 @@ function App() {
     <div className="App">
       <div className="App__canvas">
         <Canvas
+        camera={{ position: [-100, 100, 150] }}
           >
             {/* <ambientLight color={'white'} intensity={0.1} /> */}
             {/* <hemisphereLight fog={false} />
@@ -68,14 +70,14 @@ function App() {
 
             <spotLight position={[15, 0, 5]} color={'white'} penumbra={.05} castShadow /> */}
 
-            <ambientLight color={'red'} intensity={0} castShadow={false}/>
-            <pointLight color={'lightpink'} position={[40, 40, 40]} castShadow={false} />
+            {/* <ambientLight color={'red'} intensity={0} castShadow={false}/> */}
+            <pointLight color={'white'} position={[40, 20, 40]} castShadow={false} />
 
 
             <Controls />
 
             <Suspense fallback={<Box />} >
-                <Plant fog={false}/>
+                <Table fog={false}/>
             </Suspense>
             <Effects />
           </Canvas>

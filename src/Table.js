@@ -8,9 +8,10 @@ import { useLoader } from 'react-three-fiber'
 export default () =>{
     const group = useRef();
 
-    const {nodes} = useLoader(GLTFLoader, '/table04.gltf', loader=>{
+    const {nodes} = useLoader(GLTFLoader, '/newtable.gltf', loader=>{
     })
    
+    console.log('nodes', nodes);
 
     const Table = [];
 
@@ -20,10 +21,15 @@ export default () =>{
         }
     }
 
+    const test = () => {
+        console.log('CLICK');
+    }
+
    
     // Object.keys(Table).map((node) => {
     //     console.log('node', Table[node].material)
     // })
+
 
 
     return(
@@ -38,14 +44,16 @@ export default () =>{
                         <mesh 
                             geometry={obj.geometry}
                             position={obj.position}
+                            onPointerDown={test}
                             key={i}
                         >
                         <meshBasicMaterial
                             map={obj.material.map}
+                            side={THREE.DoubleSide}
                             transparent={false}
                             reflectivity={1}
                             fog={false}
-                            color="pink"
+                            color="white"
                             attach = "material"
                             depthWrite={true}
                             />
@@ -56,7 +64,7 @@ export default () =>{
 
     
                 
-                <mesh 
+                {/* <mesh 
                     geometry={nodes.Floor.geometry}
                     position={nodes.Floor.position}
                 >
@@ -67,7 +75,7 @@ export default () =>{
                           attach = "material"
                           depthWrite={true}
                           />
-                </mesh>
+                </mesh> */}
                  
                 
             </group>
