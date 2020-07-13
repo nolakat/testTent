@@ -8,7 +8,7 @@ import { useLoader } from 'react-three-fiber'
 export default () =>{
     const group = useRef();
 
-    const {nodes} = useLoader(GLTFLoader, '/newtable.gltf', loader=>{
+    const {nodes} = useLoader(GLTFLoader, '/newtable02.gltf', loader=>{
     })
    
     console.log('nodes', nodes);
@@ -25,6 +25,10 @@ export default () =>{
         console.log('CLICK');
     }
 
+    const changeMouse = () =>{
+        
+        console.log('Change Moues');   
+    }
    
     // Object.keys(Table).map((node) => {
     //     console.log('node', Table[node].material)
@@ -40,15 +44,22 @@ export default () =>{
                 Object.keys(Table).map((node, i) =>{
                     const obj = Table[node];
 
+                    const thisMaterial = obj.material.map; 
+                    thisMaterial.magFilter = THREE.NearestFilter;
+                    thisMaterial.minFilter = THREE.LinearMipMapLinearFilter;
+
+
+
                     return(
                         <mesh 
                             geometry={obj.geometry}
                             position={obj.position}
                             onPointerDown={test}
+                            onPointerOver={changeMouse}
                             key={i}
                         >
                         <meshBasicMaterial
-                            map={obj.material.map}
+                            map={thisMaterial}
                             side={THREE.DoubleSide}
                             transparent={false}
                             reflectivity={1}
