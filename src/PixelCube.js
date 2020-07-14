@@ -34,19 +34,18 @@ export default () =>{
             <group
                 ref={group}
             >
-
-<mesh
-      position={[0, 0, 0]}
-      >
-     <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
-                    <meshToonMaterial
+                <mesh 
+                    geometry={nodes.Cube.geometry}
+                    position={[0, 50, 0]}
+                >
+                    <meshStandardMaterial
                     attach = "material"
-                    color="#E4AEB4"
+                    color='blue'
                     />
-                       <shaderMaterial
+                       {/* <shaderMaterial
                             attach="material"
                             args={[PixelShader]}
-                        />
+                        /> */}
                 </mesh>
             </group>
     )

@@ -2,6 +2,8 @@ import React, { useRef} from 'react';
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { useLoader } from 'react-three-fiber'
+import Desk from './Desk'
+
 
 
 
@@ -13,34 +15,55 @@ export default () =>{
    
     console.log('nodes', nodes);
 
-    const Table = [];
+    // const Table = [];
 
-    for (const [key, value] of Object.entries(nodes)) {
-        if( value.type === 'Mesh' && key !== 'Floor'){
-            Table.push(value)
-        }
-    }
+    const desk = nodes['Table'];
 
-    const test = () => {
-        console.log('CLICK');
-    }
+    console.log('DESK', desk);
 
-    const changeMouse = () =>{
-        
-        console.log('Change Moues');   
-    }
-   
-    // Object.keys(Table).map((node) => {
-    //     console.log('node', Table[node].material)
-    // })
-
+    // for (const [key, value] of Object.entries(nodes)) {
+    //     if( value.type === 'Mesh' && key !== 'Floor'){
+    //         Table.push(value)
+    //     }
+    // }
 
 
     return(
             <group
                 ref={group}
             >
-                 {
+
+                <Desk nodes={nodes['Table']} />
+
+                {/* {
+                    desk.children.map((node, i) =>{
+                        return(
+                            <mesh
+                            geometry={node.geometry}
+                            position={node.position}
+                            key={node.name}
+                            >
+                        
+                            <meshBasicMaterial
+                                map={node.material.map}
+                                side={THREE.DoubleSide}
+                                transparent={false}
+                                reflectivity={1}
+                                fog={false}
+                                color="white"
+                                attach = "material"
+                                depthWrite={true}
+                                />
+                    
+                            </mesh>
+                        )
+                    })
+                } */}
+
+
+
+
+                 {/* {
                 Object.keys(Table).map((node, i) =>{
                     const obj = Table[node];
 
@@ -48,16 +71,15 @@ export default () =>{
                     thisMaterial.magFilter = THREE.NearestFilter;
                     thisMaterial.minFilter = THREE.LinearMipMapLinearFilter;
 
-
-
                     return(
-                        <mesh 
+                        <mesh
                             geometry={obj.geometry}
                             position={obj.position}
                             onPointerDown={test}
                             onPointerOver={changeMouse}
                             key={i}
                         >
+                            
                         <meshBasicMaterial
                             map={thisMaterial}
                             side={THREE.DoubleSide}
@@ -68,10 +90,11 @@ export default () =>{
                             attach = "material"
                             depthWrite={true}
                             />
+                 
                         </mesh>
                     )
                 })
-            }
+            } */}
 
     
                 

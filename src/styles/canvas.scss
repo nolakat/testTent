@@ -11,3 +11,26 @@ canvas,
     height: 100%;
     background: white;
 }
+
+#kittenMeow{
+    color: green;
+    font-size: 12px;
+    border-bottom: 1px solid green;
+    padding-bottom: 2px;
+    opacity: 0;
+    
+    &.active{
+        color: purple;
+        font-size: 20px;
+        border-color: purple;
+        opacity: 1;
+    }
+
+    
+}
+
+// canvas{
+//     image-rendering: pixelated;
+//     image-rendering: -moz-crisp-edges;
+//     image-rendering: crisp-edges;
+// }
