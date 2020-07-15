@@ -3,7 +3,7 @@ import * as THREE from 'three'
 
 
 
-export default (props) =>{
+const Desk = (props) =>{
     const deskRef = useRef();
 
 
@@ -26,11 +26,12 @@ export default (props) =>{
                                 map={node.material.map}
                                 side={THREE.DoubleSide}
                                 transparent={false}
-                                reflectivity={1}
+                                reflectivity={0}
                                 fog={false}
                                 color="white"
                                 attach = "material"
                                 depthWrite={true}
+                                flatShading={true}
                                 />
                     
                             </mesh>
@@ -43,3 +44,5 @@ export default (props) =>{
     )
 
 }
+
+export default Desk;

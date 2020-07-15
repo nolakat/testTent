@@ -3,7 +3,7 @@ import * as THREE from 'three'
 
 
 
-export default (props) =>{
+const Mouse = (props) =>{
     const mouseRef = useRef();
     const mouse = props.nodes;
 
@@ -38,3 +38,5 @@ export default (props) =>{
     )
 
 }
+
+export default Mouse;

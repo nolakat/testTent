@@ -1,9 +1,14 @@
-import React, { useRef} from 'react';
+import React, { useRef, useState } from 'react';
+import { useLoader, useFrame } from 'react-three-fiber'
 import * as THREE from 'three'
+import testSprite from './img/littlekitten.png'
+import homer from './img/homer.png'
+import { PlainAnimator } from "three-plain-animator/lib/plain-animator"
 
 
 
-export default (props) =>{
+
+const Screen = (props) =>{
     const screenRef = useRef();
     const screen = props.nodes;
 
@@ -11,30 +16,50 @@ export default (props) =>{
         console.log('MEOW');
     }
 
+
+    const url = testSprite;
+    const spriteTexture = useLoader(THREE.TextureLoader, url)
+    spriteTexture.flipY = false
+    spriteTexture.center = {x: 0, y: -.1}
+    const screenSaver = screen.material.map
+ 
+
+    const [animator] = useState(() => new PlainAnimator(spriteTexture, 8, 3, 24, 20))
+
+
+    useFrame(() => animator.animate())
+
+
+
+    // console.log('sprit', spriteTexture);
+    // console.log('testKitten', screenSaver);
+
+
+
     return(
             <group
                 ref={screenRef}
             >
-                        <mesh
-                            geometry={screen.geometry}
-                            position={screen.position}
-                            onPointerDown={meow}
-                            key={screen.name}
-                            >
-                        
-                            <meshBasicMaterial
-                                map={screen.material.map}
-                                side={THREE.DoubleSide}
-                                transparent={false}
-                                reflectivity={1}
-                                fog={false}
-                                color="white"
-                                attach = "material"
-                                depthWrite={true}
-                                />
-                    
-                            </mesh>
+            <mesh
+            geometry={screen.geometry}
+            position={screen.position}
+            onPointerDown={meow}
+            key={screen.name}
+            >
+            <meshBasicMaterial
+                attach = "material"
+                map={  props.kittenStatus ? screenSaver : spriteTexture }
+                // transparent={false} 
+                // depthTest={false}
+                // depthWrite={false}
+                side={THREE.FrontSide}
+                />
+    
+            </mesh>
+                     
             </group>
     )
 
 }
+
+export default Screen

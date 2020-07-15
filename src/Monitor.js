@@ -3,7 +3,7 @@ import * as THREE from 'three'
 
 
 
-export default (props) =>{
+const Monitor = (props) =>{
     const monitorRef = useRef();
     const monitor = props.nodes;
 
@@ -34,6 +34,7 @@ export default (props) =>{
                                 color="white"
                                 attach = "material"
                                 depthWrite={true}
+                                generateMipmaps={false}
                                 />
                     
                             </mesh>
@@ -41,3 +42,5 @@ export default (props) =>{
     )
 
 }
+
+export default Monitor;

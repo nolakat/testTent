@@ -57,16 +57,15 @@ function App() {
       <div className="App__canvas">
         <Canvas
         camera={{ position: [-100, 100, 150] }}
+        antialias="true"
+
           >
-
             <Controls />
-
             <Suspense fallback={<Box />} >
                 <Room fog={false}/>
             </Suspense>
-            
-            <Effects />
 
+            <Effects />
           </Canvas>
       </div>
     </div>
