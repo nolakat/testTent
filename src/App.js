@@ -34,6 +34,9 @@ function App() {
     // useFrame(() => {
     //   orbitRef.current.update()
     // })
+
+    console.log('camera', camera.position)
+
   
     return (
       <orbitControls
@@ -51,14 +54,12 @@ function App() {
 
 
 
-
   return (
     <div className="App">
       <div className="App__canvas">
         <Canvas
         camera={{ position: [-100, 100, 150] }}
-        antialias="true"
-
+        fog={false}
           >
             <Controls />
             <Suspense fallback={<Box />} >

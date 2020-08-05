@@ -6,6 +6,7 @@ import Monitor from './Monitor'
 import Screen from './Screen'
 import Keyboard from './Keyboard'
 import Mouse from './Mouse'
+import Palm from './Palm'
 import './fonts/Minecraft.ttf'
 
 
@@ -14,7 +15,7 @@ const Room = () =>{
     const roomRef = useRef();
     const meowRef = useRef();
 
-    const {nodes} = useLoader(GLTFLoader, '/newtable02.gltf', loader=>{
+    const {nodes} = useLoader(GLTFLoader, '/newtable03.gltf', loader=>{
     })
    
     console.log('nodes', nodes);
@@ -50,7 +51,8 @@ const Room = () =>{
                 <Monitor nodes={nodes['Monitor']} />
                 <Screen nodes={nodes['Screen']} kittenStatus={kittenAsleep} />
                 <Keyboard nodes={nodes['Keyboard']} petKitten={meow} />
-                <Mouse nodes={nodes['Mouse']} />                 
+                <Mouse nodes={nodes['Mouse']} />        
+                <Palm nodes={nodes['Palm']} />         
                 
             </group>
     )
