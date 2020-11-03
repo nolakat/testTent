@@ -9,9 +9,13 @@ export default (props) =>{
     const keyboard = props.nodes;
 
     const handleClick = () => {
-        console.log('handle click');
+        //console.log('handle click');
         props.petKitten();
 
+    }
+
+    const handleOver = (state) => {
+        props.handleHover(state);
     }
 
     return(
@@ -21,6 +25,8 @@ export default (props) =>{
                         <mesh
                             geometry={keyboard.geometry}
                             position={keyboard.position}
+                            onPointerOver={(e) => handleOver(true)}
+                            onPointerOut={(e) => handleOver(false)}
                             onPointerDown={handleClick}
                             key={keyboard.name}
                             >

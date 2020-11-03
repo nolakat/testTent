@@ -12,18 +12,16 @@ import './fonts/Minecraft.ttf'
 
 
 
-const Room = () =>{
+const Room = (props) =>{
     const roomRef = useRef();
     const meowRef = useRef();
 
     const {nodes} = useLoader(GLTFLoader, '/room_draft05.gltf', loader=>{
     })
    
-    console.log('nodes', nodes);
+    // console.log('nodes', nodes);
 
-    const [kittenAsleep, setKitten] = useState(true);
-    const [isShown, setIsShown] = useState(false);
-
+    const [kittenAsleep, setKitten] = useState(true);    
 
     const meow = () => {
     
@@ -32,6 +30,10 @@ const Room = () =>{
             setKitten(true)
         }, 2000);
         
+    }
+
+    const handleHover = (state) => {
+        props.handleHover(state)
     }
 
 
@@ -54,7 +56,7 @@ const Room = () =>{
                 <Chair nodes={nodes['Chair']} />
                 <Monitor nodes={nodes['Monitor']} />
                 <Screen nodes={nodes['Screen']} kittenStatus={kittenAsleep} />
-                <Keyboard nodes={nodes['Keyboard']} petKitten={meow}  onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)}/>
+                <Keyboard nodes={nodes['Keyboard']} petKitten={meow}  handleHover={handleHover}/>
                 <Mouse nodes={nodes['Mouse']} />        
                 <Palm nodes={nodes['Palm']} />         
                 

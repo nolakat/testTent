@@ -1,15 +1,19 @@
-import React, { useRef, Suspense} from 'react';
+import React, { useRef, useState, Suspense} from 'react';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import { Canvas, extend, useThree} from "react-three-fiber"
 
 import Room from './Room'
 import Effects from './Effects'
+import Cursor from './Cursor'
 
 import './index.scss'
 extend({ OrbitControls })
 
 
 function App() {
+
+  const [isHover, setHover] = useState(false);
+
 
 
   const Box = (props) => {
@@ -26,6 +30,7 @@ function App() {
       </mesh>
     )
   }
+
 
   const Controls = () => {
     const orbitRef = useRef()
@@ -52,18 +57,32 @@ function App() {
   }
 
 
+  const moveCursor = (e) => {
+    //console.log('MOVE CURSOR', e.pageX, e.pageY);
+    const cursor = document.querySelector('.testCursor');
+    cursor.style.left = `${e.pageX}px`
+    cursor.style.top = `${e.pageY}px`
+  }
+
+  const handleHover = (status) =>{    
+    setHover(status)
+
+    console.log('HANDLE HOVER', isHover);
+  }
 
 
   return (
     <div className="App">
       <div className="App__canvas">
+        <Cursor isHover={isHover}/>
         <Canvas
         camera={{ position: [-100, 100, 150] }}
-        fog={false}
+        onMouseMove={ moveCursor}
           >
             <Controls />
+
             <Suspense fallback={<Box />} >
-                <Room fog={false}/>
+                <Room handleHover={handleHover} fog={false}/>
             </Suspense>
 
             <Effects />
