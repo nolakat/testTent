@@ -91,6 +91,16 @@ canvas,
     //transform: scale(.5);
 }
 
+.navContainer{
+    z-index: 2;
+    position: absolute;
+    top: 0;
+
+    &:hover{
+       text-decoration: underline;
+    }
+}
+
 
 // canvas{
 //     image-rendering: pixelated;

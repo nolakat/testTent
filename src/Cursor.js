@@ -1,5 +1,4 @@
 import React from 'react'
-import PixelCursor from './img/pixelCursor.png'
 import TestCursor from './img/mouseFinal.png'
 import TestHover from './img/mouseHover.png'
 

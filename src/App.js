@@ -3,8 +3,10 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import { Canvas, extend, useThree} from "react-three-fiber"
 
 import Room from './Room'
+import Nav from './Nav'
 import Effects from './Effects'
 import Cursor from './Cursor'
+
 
 import './index.scss'
 extend({ OrbitControls })
@@ -66,18 +68,18 @@ function App() {
 
   const handleHover = (status) =>{    
     setHover(status)
-
-    console.log('HANDLE HOVER', isHover);
   }
 
 
   return (
-    <div className="App">
+    <div className="App"
+         onMouseMove={ moveCursor}
+    >
       <div className="App__canvas">
         <Cursor isHover={isHover}/>
+        <Nav handleHover={handleHover} />
         <Canvas
         camera={{ position: [-100, 100, 150] }}
-        onMouseMove={ moveCursor}
           >
             <Controls />
 
