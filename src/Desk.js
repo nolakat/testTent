@@ -1,5 +1,5 @@
 import React, { useRef} from 'react';
-import * as THREE from 'three'
+import * as THREE from 'three';
 
 
 

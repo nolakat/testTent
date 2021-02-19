@@ -8,6 +8,7 @@ import Keyboard from './Keyboard'
 import Mouse from './Mouse'
 import Palm from './Palm'
 import Chair from './Chair'
+import DeskPlant from './DeskPlant'
 import './fonts/Minecraft.ttf'
 
 
@@ -16,10 +17,10 @@ const Room = (props) =>{
     const roomRef = useRef();
     const meowRef = useRef();
 
-    const {nodes} = useLoader(GLTFLoader, '/room_draft05.gltf', loader=>{
+    const {nodes} = useLoader(GLTFLoader, '/room_draft06.gltf', loader=>{
     })
    
-    // console.log('nodes', nodes);
+    console.log('nodes', nodes);
 
     const [kittenAsleep, setKitten] = useState(true);    
 
@@ -57,7 +58,8 @@ const Room = (props) =>{
                 <Monitor nodes={nodes['Monitor']} />
                 <Screen nodes={nodes['Screen']} kittenStatus={kittenAsleep} />
                 <Keyboard nodes={nodes['Keyboard']} petKitten={meow}  handleHover={handleHover}/>
-                <Mouse nodes={nodes['Mouse']} />        
+                <Mouse nodes={nodes['Mouse']} /> 
+                <DeskPlant nodes={nodes['DeskPlant']} />
                 <Palm nodes={nodes['Palm']} />         
                 
             </group>

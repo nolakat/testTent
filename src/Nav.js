@@ -8,7 +8,7 @@ export default (props) => {
     }
 
     return ( 
-    <div class="navContainer">
+    <div className="navContainer">
         <h3  
             onPointerOver={(e) => handleOver(true)}
             onPointerOut={(e) => handleOver(false)}>TEST</h3>
