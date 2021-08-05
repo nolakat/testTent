@@ -17,7 +17,7 @@ function App() {
   const [isHover, setHover] = useState(false);
 
 
-  const Box = (props) => {
+  const Loader = (props) => {
     const mesh = useRef()
 
     return (
@@ -26,8 +26,8 @@ function App() {
       ref={mesh}
       scale={[1, 1 ,1]}
       >
-     <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
-      <meshStandardMaterial attach="material" color='red' />
+        <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
+        <meshStandardMaterial attach="material" color='red' />
       </mesh>
     )
   }
@@ -38,13 +38,7 @@ function App() {
     const { camera, gl } = useThree()
   
     useFrame(() => {
-      // orbitRef.current.update()
-      console.log('camera', camera.position)
-
     })
-
-    console.log('camera', camera.position)
-    console.log('TEST', Math.PI / 3)
 
   
     return (
@@ -84,12 +78,14 @@ function App() {
         <Cursor isHover={isHover}/>
         <Nav handleHover={handleHover} />
         <Canvas
-        camera={{ position: [-50, 60, 100] }}
+        camera={{ position: [-50, 75, 100] }}
           >
             <Controls />
 
-            <Suspense fallback={<Box />} >
-                <Room handleHover={handleHover} fog={false}/>
+            <Suspense fallback={<Loader />} >
+                <Room 
+                  handleHover={handleHover} 
+                  fog={false}/>
             </Suspense>
 
             <Effects />
