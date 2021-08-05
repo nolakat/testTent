@@ -1,6 +1,6 @@
 import React, { useRef, useState, Suspense} from 'react';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import { Canvas, extend, useThree} from "react-three-fiber"
+import { Canvas, extend, useThree, useFrame} from "react-three-fiber"
 
 import Room from './Room'
 import Nav from './Nav'
@@ -15,7 +15,6 @@ extend({ OrbitControls })
 function App() {
 
   const [isHover, setHover] = useState(false);
-
 
 
   const Box = (props) => {
@@ -38,11 +37,14 @@ function App() {
     const orbitRef = useRef()
     const { camera, gl } = useThree()
   
-    // useFrame(() => {
-    //   orbitRef.current.update()
-    // })
+    useFrame(() => {
+      // orbitRef.current.update()
+      console.log('camera', camera.position)
+
+    })
 
     console.log('camera', camera.position)
+    console.log('TEST', Math.PI / 3)
 
   
     return (
@@ -50,8 +52,12 @@ function App() {
         autoRotate
         maxPolarAngle={Math.PI / 3}
         minPolarAngle={Math.PI / 3}
-        minDistance={4}
-        // maxDistance={4}
+        minAzimuthAngle={-Math.PI / 3}
+        maxAzimuthAngle={Math.PI / 3.5}
+        minDistance={87}
+        maxDistance={160}
+        zoomSpeed={.25}
+        panSpeed={.25}
         args={[camera, gl.domElement]}
         ref={orbitRef}
       />
@@ -60,7 +66,6 @@ function App() {
 
 
   const moveCursor = (e) => {
-    //console.log('MOVE CURSOR', e.pageX, e.pageY);
     const cursor = document.querySelector('.testCursor');
     cursor.style.left = `${e.pageX}px`
     cursor.style.top = `${e.pageY}px`
@@ -79,7 +84,7 @@ function App() {
         <Cursor isHover={isHover}/>
         <Nav handleHover={handleHover} />
         <Canvas
-        camera={{ position: [-100, 100, 150] }}
+        camera={{ position: [-50, 60, 100] }}
           >
             <Controls />
 
