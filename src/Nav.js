@@ -8,8 +8,10 @@ export default (props) => {
     }
 
     const links =['About', 'Work', 'Contact']
-    const linkItems = links.map((link)=>
+    const linkItems = links.map((link, index)=>
     <li
+    key={index}
+    className="nav__link"
     onPointerOver={(e) => handleOver(true)}
     onPointerOut={(e) => handleOver(false)}
     >{link}</li>
@@ -21,7 +23,7 @@ export default (props) => {
             onPointerOver={(e) => handleOver(true)}
             onPointerOut={(e) => handleOver(false)}>Nolan.Dev</h3>
         <nav>
-            <ul class="nav__container">
+            <ul className="nav__container">
                 {linkItems}
             </ul>
         </nav>

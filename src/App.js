@@ -33,6 +33,11 @@ function App() {
   }
 
 
+  
+
+  
+
+
   const Controls = () => {
     const orbitRef = useRef()
     const { camera, gl } = useThree()
@@ -49,7 +54,7 @@ function App() {
         minAzimuthAngle={-Math.PI / 3}
         maxAzimuthAngle={Math.PI / 3.5}
         minDistance={87}
-        maxDistance={160}
+        // maxDistance={160}
         zoomSpeed={.25}
         panSpeed={.25}
         args={[camera, gl.domElement]}

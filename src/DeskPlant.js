@@ -18,7 +18,6 @@ const DeskPlant = (props) => {
                         position={node.position}
                         key={node.name}
                         >
-                    
                         <meshBasicMaterial
                             map={ node.name == "DeskPlantMesh_2" ? '' : node.material.map}
                             side={THREE.DoubleSide}

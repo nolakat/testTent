@@ -1,6 +1,7 @@
-import React, { useRef, useState} from 'react';
+import React, { useRef, useState, useMemo } from 'react';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { useLoader, Dom } from 'react-three-fiber'
+import * as THREE from "three"
 import Desk from './Desk'
 import Monitor from './Monitor'
 import Screen from './Screen'
@@ -17,10 +18,10 @@ const Room = (props) =>{
     const roomRef = useRef();
     const meowRef = useRef();
 
-    const {nodes} = useLoader(GLTFLoader, '/room_draft06.gltf', loader=>{
+    const {nodes} = useLoader(GLTFLoader, '/room_draft07.gltf', loader=>{
     })
    
-    console.log('nodes', nodes);
+    // console.log('nodes', nodes);
 
     const [kittenAsleep, setKitten] = useState(true);    
 
@@ -38,6 +39,26 @@ const Room = (props) =>{
     }
 
 
+    const Room = (props) => {
+        const mesh = useRef()
+
+        console.log('ROOM', props);
+        const edges = useMemo(() => new THREE.EdgesGeometry(props.nodes.geometry, 12), [nodes])
+
+    
+        return (
+            <group>
+                <mesh geometry={props.nodes.geometry}>
+                    <meshStandardMaterial transparent />
+                </mesh>
+                <lineSegments geometry={edges} renderOrder={100}>
+                    <lineBasicMaterial color="black" />
+                </lineSegments>
+          </group>
+        )
+      }
+
+
     return(
             <group
                 ref={roomRef}
@@ -53,6 +74,7 @@ const Room = (props) =>{
                         <span>"</span>
                     </h1>
                 </Dom>
+                <Room nodes={nodes['Cube']} />
                 <Desk nodes={nodes['Table']} />
                 <Chair nodes={nodes['Chair']} />
                 <Monitor nodes={nodes['Monitor']} />
